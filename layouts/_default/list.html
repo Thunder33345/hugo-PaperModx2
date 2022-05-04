@@ -41,7 +41,8 @@
 </div>
 {{end}}
 
-{{- $pages := union .RegularPages .Sections }}
+{{/* TODO: UI to display sections differently from posts*/}}
+{{- $pages := .RegularPages }}
 
 {{- if .IsHome }}
 {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
