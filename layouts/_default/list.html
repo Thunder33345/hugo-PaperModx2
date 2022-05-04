@@ -25,16 +25,21 @@
     {{ .Description | markdownify }}
   </div>
   {{- end }}
+  {{- if .Content }}
+  <div class="post-content">
+    {{- if not (.Param "disableAnchoredHeadings") }}
+    {{- partial "anchored_headings.html" .Content -}}
+    {{- else }}{{ .Content }}{{ end }}
+  </div>
+  {{- end }}
 </header>
-{{- end }}
-
-{{- if .Content }}
+{{- else -}}
 <div class="post-content">
   {{- if not (.Param "disableAnchoredHeadings") }}
   {{- partial "anchored_headings.html" .Content -}}
   {{- else }}{{ .Content }}{{ end }}
 </div>
-{{- end }}
+{{end}}
 
 {{- $pages := union .RegularPages .Sections }}
 
