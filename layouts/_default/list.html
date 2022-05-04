@@ -42,6 +42,7 @@
 {{end}}
 
 {{/* TODO: UI to display sections differently from posts*/}}
+{{/* TODO: Mode to list all but with section's name*/}}
 {{- $pages := .RegularPages }}
 
 {{- if .IsHome }}
@@ -82,6 +83,7 @@
   {{- end }}
   {{- if not (.Param "hideMeta") }}
   <footer class="entry-footer">
+    {{/* TODO: show first category */}}
     {{- partial "post_meta.html" . -}}
   </footer>
   {{- end }}
