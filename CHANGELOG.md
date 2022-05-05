@@ -1,0 +1,19 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+## [Unreleased]
+### Added
+- custom: added `_custom` type
+- custom: added custom type `minimal`
+### Changed
+- custom: moved archives and search into `_custom` type
+- search: updated fuse to v6.6.0
+### Improved
+- list: reduced the gaps between description and content
+- search: added tags, categories, keywords for search
+- 404: added 404 message and a link to "/"
+### Removed
+- list: stop sections from being listed
+
+## [Fork] 2022-05-05
+Initial fork, the creation of PaperModx2
