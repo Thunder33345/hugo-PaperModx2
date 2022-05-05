@@ -1,3 +1,11 @@
 {{- define "main" }}
-<div class="not-found">404</div>
+<div class="not-found">
+    <div class="not-found-header">404</div>
+    {{- if isset .Site.Params "not_found_message"}}
+    <p>{{ .Site.Params.not_found_message | safeHTML }}</p>
+    {{- else}}
+    <p>You found yourself out in the middle of nowhere.<br>There's nothing to be seen here.</p>
+    {{- end}}
+    <a href="{{ " /" | relURL }}">Go Home?</a>
+</div>
 {{- end }}{{/* end main */ -}}

@@ -3,9 +3,21 @@
     left: 0;
     right: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 80%;
+}
+
+.not-found-header{
     font-size: 160px;
     font-weight: 700;
+}
+
+.not-found > a{
+    text-decoration: underline;
+    text-decoration-color: #EA215A;
+    text-decoration-thickness: .130em;
+    text-underline-offset: .05em;
+    text-decoration-style: solid;
 }
