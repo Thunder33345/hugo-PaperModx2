@@ -23,8 +23,12 @@ window.onload = function () {
                             'title',
                             'permalink',
                             'summary',
-                            'content'
-                        ]
+                            'content',
+                            'keywords',
+                            'tags',
+                            'categories'
+                        ],
+                        findAllMatches: true
                     };
                     if (params.fuseOpts) {
                         options = {
@@ -33,8 +37,8 @@ window.onload = function () {
                             includeMatches: params.fuseOpts.includematches ? params.fuseOpts.includematches : false,
                             minMatchCharLength: params.fuseOpts.minmatchcharlength ? params.fuseOpts.minmatchcharlength : 1,
                             shouldSort: params.fuseOpts.shouldsort ? params.fuseOpts.shouldsort : true,
-                            findAllMatches: params.fuseOpts.findallmatches ? params.fuseOpts.findallmatches : false,
-                            keys: params.fuseOpts.keys ? params.fuseOpts.keys : ['title', 'permalink', 'summary', 'content'],
+                            findAllMatches: params.fuseOpts.findallmatches ? params.fuseOpts.findallmatches : true,
+                            keys: params.fuseOpts.keys ? params.fuseOpts.keys : options.keys,
                             location: params.fuseOpts.location ? params.fuseOpts.location : 0,
                             threshold: params.fuseOpts.threshold ? params.fuseOpts.threshold : 0.4,
                             distance: params.fuseOpts.distance ? params.fuseOpts.distance : 100,

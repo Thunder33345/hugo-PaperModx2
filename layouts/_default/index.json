@@ -1,7 +1,16 @@
 {{- $.Scratch.Add "index" slice -}}
 {{- range site.RegularPages -}}
-    {{- if and (not .Params.searchHidden) (ne .Layout `archives`) (ne .Layout `search`) }}
-    {{- $.Scratch.Add "index" (dict "title" .Title "content" .Plain "permalink" .Permalink "summary" .Summary) -}}
-    {{- end }}
+{{- if and (not .Params.searchHidden) (ne .Type `_custom`) }}
+{{- $pg := newScratch }}
+{{- $pg.Set "title" .Title }}
+{{- $pg.Set "content" .Plain }}
+{{- $pg.Set "permalink" .Permalink }}
+{{- $pg.Set "summary" .Summary }}
+{{- $pg.Set "date" .Date }}
+{{- with .Keywords}}{{- $pg.Set "keywords" . -}}{{- end -}}
+{{- with .Params.tags}}{{- $pg.Set "tags" . -}}{{- end -}}
+{{- with .Params.categories}}{{- $pg.Set "categories" . -}}{{- end -}}
+{{- $.Scratch.Add "index" $pg.Values -}}
+{{- end }}
 {{- end -}}
 {{- $.Scratch.Get "index" | jsonify -}}
