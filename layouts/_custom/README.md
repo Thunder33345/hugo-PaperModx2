@@ -2,7 +2,7 @@
 You can use this to overwrite certain pages and "break out" of traditional layout.
 In order to use, in your front matter set the following:
 ```yaml
-type: "custom"
+type: "_custom"
 layout: "minimal" #where "minimal" is the name of the layout
 ```
 
