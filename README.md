@@ -34,7 +34,7 @@ The type will always be `_custom`, you can find available layouts in `layouts/_c
 
 The `_build.list: never` stops hugo from listing it as a normal page.
 
-The `outputs` stop hugo from generating other variants like `xml` and `json`
+The `outputs` stop hugo from generating other variants like `xml` and `json` specifically for said page
 
 ## Minimal
 This is a minimal layout without breadcrumbs, post meta, toc, taxonomy list, navlinks.
@@ -48,3 +48,21 @@ Archive is a page with a list of posts sorted by dates.
 
 ## Search
 Search is a page that allows user to search thru the blog.
+
+You will need to add `json` to the `outputs` to generate the index file used for searching. (search will not work without it, an error will be generated to assist you)
+
+Example:
+```yaml
+---
+title: "Search"
+type: "_custom"
+layout: "search"
+url: "/search/"
+summary: "search"
+_build:
+  list: never
+outputs:
+- html
+- json
+---
+```

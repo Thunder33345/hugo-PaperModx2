@@ -1,5 +1,15 @@
 {{- define "main" }}
 
+
+{{- $hasIndex := false -}}
+{{- range where .AlternativeOutputFormats "Format.Name" "JSON" -}}
+{{- $hasIndex = true -}}
+{{- end -}}
+
+{{- if eq $hasIndex false -}}
+{{- errorf "Missing search index for %v, did you forget to include json as an outputs format in the page's front matter?" . -}}
+{{- end -}}
+
 <header class="page-header">
     <h1>{{- (printf "%s&nbsp;" .Title ) | htmlUnescape -}}
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"

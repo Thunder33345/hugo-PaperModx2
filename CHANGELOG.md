@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - custom: moved archives and search into `_custom` type
 - search: updated fuse to v6.6.0
+- search: moved search index location to use local "./index.json" instead of the root "/index.json"
 ### Improved
 - list: reduced the gaps between description and content
 - search: added tags, categories, keywords for search
