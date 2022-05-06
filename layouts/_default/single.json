@@ -1,0 +1,4 @@
+{{- partial "json/guard.json" . -}}
+{{- with partial "json/render_post.json" . -}}
+    {{- . | jsonify -}}
+{{- end -}}

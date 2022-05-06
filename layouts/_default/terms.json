@@ -1,0 +1,33 @@
+{{- partial "json/guard.json" . -}}
+{{- $term := newScratch -}}
+{{- $term.Set "in_section" .CurrentSection.Title}}
+
+{{- if .Title }}
+{{- $term.Set "title" .Title}}
+{{- if .Description }}
+{{- $term.Set "description" .Description}}
+{{- end }}
+{{- end }}
+
+
+{{- $type := .Type }}
+{{- range $key, $value := .Data.Terms.Alphabetical }}
+{{- $t := newScratch -}}
+{{- $name := .Name }}
+{{- $count := .Count }}
+{{- $t.Set "count" $count}}
+{{- $t.Set "name" .Name}}
+{{- with site.GetPage (printf "/%s/%s" $type $name) }}
+{{- $t.Set "title" .Title}}
+{{- if .Description }}
+{{- $t.Set "description" .Description}}
+{{- end }}
+
+{{- $t.Set "permalink" .Permalink}}
+{{- end }}
+{{- $term.Add "list" (slice $t.Values)}}
+{{- end }}
+
+{{- $term.Values | jsonify -}}
+
+

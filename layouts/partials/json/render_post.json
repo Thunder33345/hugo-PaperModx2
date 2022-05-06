@@ -1,0 +1,58 @@
+{{- $ps := (slice) -}}
+{{- $isSingle := false -}}
+{{- if (reflect.IsSlice .) -}}
+{{- $ps = . -}}
+{{- else -}}
+{{- $ps = (slice .) -}}
+{{- $isSingle = true -}}
+{{- end -}}
+
+{{- $pl := newScratch -}}
+
+{{- range $ps -}}
+{{- $p := newScratch }}
+{{- $p.Set "title" .Title }}
+{{- $p.Set "language" .Language.Lang }}
+{{- $p.Set "content" .RawContent }}
+{{- $p.Set "permalink" .Permalink }}
+{{- $p.Set "summary" .Summary }}
+{{- $p.Set "description" .Description }}
+{{- $p.Set "date" .PublishDate }}
+{{- $p.Set "wordcount" .WordCount }}
+
+{{/*  TODO: eventually tidy up and move slice enforcement into "json/to_slice.json" to reduce code repeat  */}}
+{{- with .Keywords -}}
+{{- if reflect.IsSlice . -}}
+{{- $p.Set "keywords" (.) -}}
+{{- else }}
+{{- $p.Set "keywords" (slice .) -}}
+{{- end -}}
+{{- end -}}
+
+{{- with .Params.tags -}}
+{{- if reflect.IsSlice . -}}
+{{- $p.Set "tags" . -}}
+{{- else }}
+{{- $p.Set "tags" (slice .) -}}
+{{- end -}}
+{{- end -}}
+
+{{- with .Params.categories -}}
+{{- if reflect.IsSlice . -}}
+{{- $p.Set "categories" . -}}
+{{- else }}
+{{- $p.Set "categories" (slice .) -}}
+{{- end -}}
+{{- end -}}
+
+{{- $pl.Add "list" (slice $p.Values) -}}
+
+{{- end -}}
+
+{{- $ret := $pl.Get "list" }}
+
+{{- if $isSingle -}}
+{{- $ret = index ($pl.Get "list") 0 -}}
+{{- end -}}
+
+{{- return $ret -}}

@@ -1,0 +1,7 @@
+{{/*  NOTE: unused, do not use, this is broken  */}}
+{{/*  Error: partials/json/to_slice.json:3:7: executing "partials/json/to_slice.json" at <reflect>: can't evaluate field isSlice in type interface {} */}}
+{{- if reflect.isSlice . -}}
+{{- return . -}}
+{{- else -}}
+{{- return (slice .) -}}
+{{- end -}}

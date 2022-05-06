@@ -1,0 +1,21 @@
+{{- partial "json/guard.json" . -}}
+{{- $list := newScratch }}
+{{- $list.Set "title" .Title}}
+{{- $list.Set "description" .Description}}
+{{- $list.Set "in_section" .CurrentSection.Title}}
+
+{{- with .RegularPages -}}
+{{- with partial "json/render_post.json" . -}}
+{{- $list.Add "post" . -}}
+{{- end -}}
+{{- end -}}
+
+{{- range $sc := .Sections -}}
+{{- $ss := newScratch }}
+{{- $ss.Set "title" $sc.Title -}}
+{{- $ss.Set "description" $sc.Description -}}
+{{- $ss.Set "permalink" $sc.Permalink -}}
+{{- $list.Add "section" (slice $ss.Values) -}}
+{{- end -}}
+{{/* TODO: render all recents, if in home  */}}
+{{- $list.Values | jsonify -}}

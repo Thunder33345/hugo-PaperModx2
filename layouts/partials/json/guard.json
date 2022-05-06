@@ -1,0 +1,3 @@
+{{- if (eq .Type `_custom`) -}}
+{{- warnf "A '_custom' type page is being rendered into json %v" . -}}
+{{- end -}}
