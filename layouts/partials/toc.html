@@ -1,5 +1,19 @@
 {{- $headers := findRE "<h[1-6].*?>(.|\n])+?</h[1-6]>" .Content -}}
 {{- $has_headers := ge (len $headers) 1 -}}
+
+{{- with .Param "tocMinHeaders" -}}
+{{- if lt $headers . -}}
+{{- $has_headers = false -}}
+{{- end }}
+{{- end }}
+
+{{- $words := .WordCount -}}
+{{- with .Param "tocMinWords" -}}
+{{- if lt $words . -}}
+{{- $has_headers = false -}}
+{{- end -}}
+{{- end -}}
+
 {{- if $has_headers -}}
 <div class="toc">
     <details {{if (.Param "TocOpen") }} open{{ end }}>

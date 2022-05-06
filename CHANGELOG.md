@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - custom: added `_custom` type
 - custom: added custom type `minimal`
+- toc: added `tocMinWords` and `tocMinHeaders` conditions for toc for hiding toc
 ### Changed
 - custom: moved archives and search into `_custom` type
 - search: updated fuse to v6.6.0

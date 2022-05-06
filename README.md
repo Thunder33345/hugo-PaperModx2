@@ -11,6 +11,14 @@ Stability: This project should not be considered as production ready, please use
 bellow list configurable values added by this fork
 ## Site Config
 Values configured via `config.*` at the root of your site
+
+### TOC
+`tocMinHeaders`(int) will hide toc if there's less then specified headers
+
+`tocMinWords`(int) will hide toc if there's less then specified words
+
+Both are OR-ed together, toc will be hidden if either of them is true
+
 ### 404 Message
 `not_found_message` accepts a raw string including HTML codes.
 
